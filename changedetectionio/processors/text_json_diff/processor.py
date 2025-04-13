@@ -12,6 +12,7 @@ from changedetectionio.html_tools import PERL_STYLE_REGEX, cdata_in_document_to_
 from changedetectionio import html_tools, content_fetchers
 from changedetectionio.blueprint.price_data_follower import PRICE_DATA_TRACK_ACCEPT, PRICE_DATA_TRACK_REJECT
 from loguru import logger
+from security import safe_command
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -93,8 +94,7 @@ class perform_site_check(difference_detection_processor):
                 raise PDFToHTMLToolNotFound("Command-line `{}` tool was not found in system PATH, was it installed?".format(tool))
 
             import subprocess
-            proc = subprocess.Popen(
-                [tool, '-stdout', '-', '-s', 'out.pdf', '-i'],
+            proc = safe_command.run(subprocess.Popen, [tool, '-stdout', '-', '-s', 'out.pdf', '-i'],
                 stdout=subprocess.PIPE,
                 stdin=subprocess.PIPE)
             proc.stdin.write(self.fetcher.raw_content)
