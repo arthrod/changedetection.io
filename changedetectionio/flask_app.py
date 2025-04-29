@@ -484,7 +484,7 @@ def check_for_new_version():
                                     'watch_count': len(datastore.data['watching'])
                                     },
 
-                              verify=False)
+                              verify=True)
         except:
             pass
 
