@@ -126,7 +126,7 @@ def construct_blueprint(datastore: ChangeDetectionStore):
             from jinja2 import Environment, FileSystemLoader
             import importlib.resources
             templates_dir = str(importlib.resources.files("changedetectionio").joinpath('templates'))
-            env = Environment(loader=FileSystemLoader(templates_dir))
+            env = Environment(loader=FileSystemLoader(templates_dir), autoescape=True)
             template_str = """{% from '_helpers.html' import render_field, render_checkbox_field, render_button %}
         <script>        
             $(document).ready(function () {

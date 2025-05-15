@@ -278,7 +278,7 @@ def construct_blueprint(datastore: ChangeDetectionStore, update_q, queuedWatchMe
                 # So that the extra panels can access _helpers.html etc, we set the environment to load from templates/
                 # And then render the code from the module
                 templates_dir = str(importlib.resources.files("changedetectionio").joinpath('templates'))
-                env = Environment(loader=FileSystemLoader(templates_dir))
+                env = Environment(loader=FileSystemLoader(templates_dir), autoescape=True)
                 template = env.from_string(form.extra_form_content())
                 included_content = template.render(**template_args)
 
