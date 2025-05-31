@@ -166,7 +166,7 @@ def xpath_filter(xpath_filter, html_content, append_pretty_line_formatting=False
     parser = etree.HTMLParser()
     if is_rss:
         # So that we can keep CDATA for cdata_in_document_to_text() to process
-        parser = etree.XMLParser(strip_cdata=False)
+        parser = etree.XMLParser(strip_cdata=False, resolve_entities=False)
 
     tree = html.fromstring(bytes(html_content, encoding='utf-8'), parser=parser)
     html_block = ""
@@ -202,7 +202,7 @@ def xpath1_filter(xpath_filter, html_content, append_pretty_line_formatting=Fals
     parser = None
     if is_rss:
         # So that we can keep CDATA for cdata_in_document_to_text() to process
-        parser = etree.XMLParser(strip_cdata=False)
+        parser = etree.XMLParser(strip_cdata=False, resolve_entities=False)
 
     tree = html.fromstring(bytes(html_content, encoding='utf-8'), parser=parser)
     html_block = ""
