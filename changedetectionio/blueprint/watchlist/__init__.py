@@ -102,9 +102,9 @@ def construct_blueprint(datastore: ChangeDetectionStore, update_q, queuedWatchMe
 
         # The template can run on cookie or url query info
         if request.args.get('sort'):
-            resp.set_cookie('sort', request.args.get('sort'))
+            resp.set_cookie('sort', request.args.get('sort'), secure=True, httponly=True, samesite='Lax')
         if request.args.get('order'):
-            resp.set_cookie('order', request.args.get('order'))
+            resp.set_cookie('order', request.args.get('order'), secure=True, httponly=True, samesite='Lax')
 
         return resp
         
