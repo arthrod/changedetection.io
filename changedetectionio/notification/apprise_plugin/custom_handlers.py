@@ -96,7 +96,7 @@ def apprise_http_custom_handler(
             headers=headers,
             params=params,
             data=body.encode("utf-8") if isinstance(body, str) else body,
-        )
+        timeout=60)
 
         response.raise_for_status()
 

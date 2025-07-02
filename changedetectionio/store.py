@@ -291,7 +291,7 @@ class ChangeDetectionStore:
                 r = requests.request(method="GET",
                                      url=url,
                                      # So we know to return the JSON instead of the human-friendly "help" page
-                                     headers={'App-Guid': self.__data['app_guid']})
+                                     headers={'App-Guid': self.__data['app_guid']}, timeout=60)
                 res = r.json()
 
                 # List of permissible attributes we accept from the wild internet
